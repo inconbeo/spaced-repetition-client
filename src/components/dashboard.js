@@ -13,7 +13,7 @@ export class Dashboard extends React.Component {
         const value = this.input.value;
         console.log(value);
         const actual = this.props.data.map((question, index) => (
-            question.answer
+            question[0].answer
       ))
       if (!value) {
           return
@@ -38,10 +38,10 @@ export class Dashboard extends React.Component {
     }
     render() {
         const actual = this.props.data.map((question, index) => (
-              question.answer
+              question[0].answer
         ))
         const questions = this.props.data.map((question, index) => (
-            <div key={index}>{question.question}</div>
+            <div key={index}>{question[0].question}</div>
         ))
         let answer, correctAnswer;
             if (!this.props.answer) {
@@ -80,24 +80,17 @@ export class Dashboard extends React.Component {
             console.log(this.props.answer)
             console.log(actual[actual.length-1])
                     
-        // let againButton;
-        //     if (this.props.count!==this.props.data.length) {
-        //         againButton = <div></div>
-        //     } 
-        //     else if (this.props.count===this.props.data.length)    {
-        //         // againButton = <button type="button" onClick={() => this.playAgain()}>Start Over</button>
-        //         this.playAgain();
-        //     }  
+        
         const styles = {'textAlign' : 'center'}
       
     return (
         <div className="cheese" style={styles}>
-        <h1>Answer questions below:</h1>
+        <h1>What do these words mean in English:</h1>
             <div>
                 <h3><p>{questions[this.props.count]}</p></h3>
                 <form onSubmit={e => this.submitAnswer(e)}>
-                        <input type="text" ref={input => this.input = input}/>
-                        <input type="submit" className="button" name="submit"/>
+                        <input placeholder="What does it mean ?" type="text" ref={input => this.input = input}/>
+                        <input  type="submit" className="button" name="submit"/>
                         <button type="button" onClick={() => this.startAgain()}>Start Over</button>
                 </form>
                 
