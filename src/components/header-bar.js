@@ -17,9 +17,10 @@ export class HeaderBar extends React.Component {
                 <button onClick={() => this.logOut()}>Log out</button>
             );
         }
+        const style = {'textAlign': 'center'};
         return (
-            <div className="header-bar">
-                <h1>Foo App</h1>
+            <div className="header-bar" style={style}>
+                <h1>Vietnamese Learning App</h1>
                 {logOutButton}
             </div>
         );
