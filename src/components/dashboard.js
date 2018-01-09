@@ -13,7 +13,7 @@ export class Dashboard extends React.Component {
         const value = this.input.value;
         console.log(value);
         const actual = this.props.data.map((question, index) => (
-            question[0].answer
+            question.answer
       ))
       if (!value) {
           return
@@ -38,10 +38,10 @@ export class Dashboard extends React.Component {
     }
     render() {
         const actual = this.props.data.map((question, index) => (
-              question[0].answer
+              question.answer
         ))
         const questions = this.props.data.map((question, index) => (
-            <div key={index}>{question[0].question}</div>
+            <div key={index}>{question.question}</div>
         ))
         let answer, correctAnswer;
             if (!this.props.answer) {
@@ -106,6 +106,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log('checing auth', state.auth)
     const {currentUser} = state.auth;
     return {
         username: state.auth.currentUser.username,
@@ -114,7 +115,6 @@ const mapStateToProps = state => {
         loading: state.protectedData.loading,
         error: state.protectedData.error,
         answer: state.protectedData.answer,
-        result: state.protectedData.cheeses,
         count: state.protectedData.count,
         score: state.protectedData.score,
         time: state.protectedData.time
