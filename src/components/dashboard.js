@@ -117,7 +117,8 @@ const mapStateToProps = state => {
         answer: state.protectedData.answer,
         count: state.protectedData.count,
         score: state.protectedData.score,
-        time: state.protectedData.time
+        time: state.protectedData.time,
+        questions: state.auth.currentUser.questions
     };
 };
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));

@@ -55,3 +55,34 @@ export const fetchProtectedData = () => (dispatch, getState) => {
         });
 };
 
+// export const fetchAddItem = item => (dispatch, getState) => {
+//     const state = getState();
+//     return fetch(`${API_BASE_URL}/users/${state.auth.currentUser.id}`, {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Accept: 'application/json',
+//         Authorization: `Bearer ${state.auth.authToken}`
+//       },
+//       body: JSON.stringify({ questions: item })
+//     }).then(() => {
+//       dispatch(fetchAddItemSuccess(item.itemId));
+//     });
+//   };
+
+//   export const fetchAddList = () => (dispatch, getState) => {
+//     const authToken = getState().auth.authToken;
+//     return fetch(`${API_BASE_URL}/protected`, {
+//         method: 'GET',
+//         headers: {
+//             // Provide our auth token as credentials
+//             Authorization: `Bearer ${authToken}`
+//         }
+//     })
+//         .then(res => normalizeResponseErrors(res))
+//         .then(res => res.json())
+//         .then((data) => {
+//             console.log(data)
+//             dispatch(fetchAddItem(data[0].questions))})
+        
+// };
