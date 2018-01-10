@@ -4,7 +4,8 @@ import {
     AUTH_REQUEST,
     AUTH_SUCCESS,
     AUTH_ERROR
-} from '../actions/auth';
+ } from '../actions/auth';
+//import { FETCH_ADD_ITEM_SUCCESS } from '../actions/protected-data';
 
 const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
@@ -39,5 +40,13 @@ export default function reducer(state = initialState, action) {
             error: action.error
         });
     }
+    // else if (action.type === FETCH_ADD_ITEM_SUCCESS) {
+    //     console.log(action);
+    //     return Object.assign({}, state, {
+    //       currentUser: Object.assign({}, state.currentUser, {
+    //         questions: action.questions
+    //       })
+    //     });
+    //   }
     return state;
 }
