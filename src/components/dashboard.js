@@ -1,16 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {fetchCount, fetchProtectedData, submitCorrectAnswer, submitWrongAnswer, resetQuestions, startOver} from '../actions/protected-data';
+import {fetchAddList, fetchCount, fetchProtectedData, submitCorrectAnswer, submitWrongAnswer, resetQuestions, startOver} from '../actions/protected-data';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
-          
-       
-         this.props.dispatch(fetchCount());
+        this.props.dispatch(fetchAddList())
+        this.props.dispatch(fetchCount());
         this.props.dispatch(fetchProtectedData())
-        
-    
     }
 
     submitAnswer(event) {
