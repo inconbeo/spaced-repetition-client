@@ -2,14 +2,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
+import {updateCount} from '../actions/protected-data';
+import requiresLogin from './requires-login';
 
 export class HeaderBar extends React.Component {
     logOut() {
+        console.log('checking count ne', this.props.count)
+        this.props.dispatch(updateCount(this.props.count,this.props.score,this.props.time));
         this.props.dispatch(clearAuth());
         clearAuthToken();
     }
-
+    
     render() {
+        
         // Only render the log out button if we are logged in
         let logOutButton;
         if (this.props.loggedIn) {
@@ -28,7 +33,10 @@ export class HeaderBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    count: state.protectedData.count,
+    score: state.protectedData.score,
+    time: state.protectedData.time
 });
 
-export default connect(mapStateToProps)(HeaderBar);
+export default requiresLogin()(connect(mapStateToProps)(HeaderBar));

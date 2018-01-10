@@ -36,6 +36,20 @@ export const startOver = ()  => ({
     type: START_OVER,
 })
 
+export const FETCH_COUNT_SUCCESS = 'FETCH_COUNT_SUCCESS';
+export const fetchCountSuccess = (count, score, time) => ({
+    type: FETCH_COUNT_SUCCESS,
+    count,
+    score,
+    time
+});
+
+export const FETCH_COUNT_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
+export const fetchCountError = error => ({
+    type: FETCH_COUNT_ERROR,
+    error
+});
+
 export const fetchProtectedData = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/protected`, {
@@ -52,6 +66,42 @@ export const fetchProtectedData = () => (dispatch, getState) => {
             dispatch(fetchProtectedDataSuccess(data[0].questions))})
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
+        });
+};
+
+export const updateCount = (count, score, time) => (dispatch, getState) => {
+    console.log('UPDATING COUNTS ARE DISPATCHING HERE');
+    console.log(count, score, time);
+    const state = getState();
+    return fetch(`${API_BASE_URL}/users/count/${state.auth.currentUser.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.auth.authToken}`
+      },
+      body: JSON.stringify({ count: count, score: score, time: time })
+    })
+  };
+
+  export const fetchCount = () => (dispatch, getState) => {
+      console.log('FETCHING COUNTS HERE')
+    const authToken = getState().auth.authToken;
+    const state = getState();
+    return fetch(`${API_BASE_URL}/users/count/${state.auth.currentUser.id}`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data)
+            dispatch(fetchCountSuccess(data.count, data.score, data.time))})
+        .catch(err => {
+            dispatch(fetchCountError(err));
         });
 };
 

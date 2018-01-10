@@ -1,11 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {fetchProtectedData, submitCorrectAnswer, submitWrongAnswer, resetQuestions, startOver} from '../actions/protected-data';
+import {fetchCount, fetchProtectedData, submitCorrectAnswer, submitWrongAnswer, resetQuestions, startOver} from '../actions/protected-data';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+          
+       
+         this.props.dispatch(fetchCount());
+        this.props.dispatch(fetchProtectedData())
+        
+    
     }
 
     submitAnswer(event) {
@@ -106,7 +111,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log('checing auth', state.auth)
+    console.log('checking auth', state.auth)
     const {currentUser} = state.auth;
     return {
         username: state.auth.currentUser.username,
@@ -118,7 +123,8 @@ const mapStateToProps = state => {
         count: state.protectedData.count,
         score: state.protectedData.score,
         time: state.protectedData.time,
-        questions: state.auth.currentUser.questions
+        questions: state.auth.currentUser.questions,
+        countUser: state.auth.currentUser.count,
     };
 };
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));

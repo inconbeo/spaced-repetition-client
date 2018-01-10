@@ -1,4 +1,6 @@
 import {
+    FETCH_COUNT_ERROR,
+    FETCH_COUNT_SUCCESS,
     FETCH_PROTECTED_DATA_SUCCESS,
     FETCH_PROTECTED_DATA_ERROR,
     SUBMIT_CORRECT_ANSWER,
@@ -54,7 +56,7 @@ export default function reducer(state = initialState, action) {
     }
     else if(action.type === START_OVER) {
         return Object.assign({}, state, {
-            data: [],
+            //data: [],
             loading: false,
             error: null,
             answer: null,
@@ -62,6 +64,20 @@ export default function reducer(state = initialState, action) {
             score: 0,
             time: 0
         })
+    }
+    else if (action.type === FETCH_COUNT_SUCCESS) {
+        return Object.assign({}, state, {
+            count: action.count,
+            score: action.score,
+            time: action.time,
+            loading: false,
+            error: null
+        });
+    }
+    else if (action.type === FETCH_COUNT_ERROR) {
+        return Object.assign({}, state, {
+            error: action.error
+        });
     }
     return state;
 }
