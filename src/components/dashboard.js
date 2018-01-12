@@ -62,6 +62,7 @@ export class Dashboard extends React.Component {
               
         
         const styles = {'textAlign' : 'center'}
+       
       
     return (
         <div className="cheese" style={styles}>

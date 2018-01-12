@@ -156,6 +156,7 @@
     -webkit-transition: 0.5s;
     transition: 0.5s;
     font-size: 30px;
+    border-radius: 20px;
   }
   
   .start:hover {
@@ -234,8 +235,8 @@
 
   .submit, .next, .over {
     min-width: 100px;
-    width: 250px;;
-    height: 80px;
+    width: 220px;;
+    height: 60px;
     margin-top: 10px;
     transition: all 100ms linear;
     background-color: rgb(173, 36, 207);
