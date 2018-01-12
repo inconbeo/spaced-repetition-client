@@ -14,7 +14,6 @@ export class Intro extends React.Component {
         else {
             return
         }
-        
     }
 
     render () {

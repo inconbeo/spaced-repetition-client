@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {scoreRight, transferQuestions,fetchingQuestion, postingAnswer, fetchCount, submitCorrectAnswer, submitWrongAnswer, startOver} from '../actions/protected-data';
+import {reset, transferQuestions,fetchingQuestion, postingAnswer, fetchCount, submitCorrectAnswer, submitWrongAnswer, startOver} from '../actions/protected-data';
 import './dashboard.css';
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -23,7 +23,6 @@ export class Dashboard extends React.Component {
         else {
         this.props.dispatch(submitWrongAnswer(value));
         }
-        
         this.input.value = '';
         this.props.dispatch(postingAnswer(value))
      }
@@ -36,8 +35,9 @@ export class Dashboard extends React.Component {
         this.props.dispatch(fetchingQuestion());
     }
 
-    score() {
-        this.props.dispatch(scoreRight());
+    nextQuestion() {
+        this.props.dispatch(reset())
+        this.props.dispatch(fetchingQuestion());
     }
 
     render() {
@@ -47,7 +47,7 @@ export class Dashboard extends React.Component {
                 correctAnswer = <p></p>
             }
             else if (this.props.answer===this.props.answerll) {
-                this.score()
+                //this.score()
                 answer = <p>This is Correct</p>
                 correctAnswer = <p></p>
             }
@@ -56,10 +56,10 @@ export class Dashboard extends React.Component {
                 correctAnswer = <p>The correct answer is: {this.props.answerll}</p>
             }
            
-            
             console.log('checking linkedlist answer', this.props.answerll)
             console.log(this.props.answer); 
-            console.log(this.props.data);      
+            console.log(this.props.data); 
+              
         
         const styles = {'textAlign' : 'center'}
       
@@ -71,6 +71,7 @@ export class Dashboard extends React.Component {
                 <form onSubmit={e => this.submitAnswer(e)}>
                         <input placeholder="What does it mean ?" type="text" ref={input => this.input = input}/>
                         <input  type="submit" className="button" name="submit"/>
+                        <button type="button" onClick={() => this.nextQuestion()}>Next</button>
                         <button type="button" onClick={() => this.startAgain()}>Start Over</button>
                 </form>
                 {answer}

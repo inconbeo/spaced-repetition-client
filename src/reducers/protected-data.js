@@ -6,7 +6,8 @@ import {
     SUBMIT_CORRECT_ANSWER,
     SUBMIT_WRONG_ANSWER,
     START_OVER,
-    SCORE_RIGHT
+    SCORE_RIGHT,
+    RESET
 } from '../actions/protected-data';
 
 const initialState = {
@@ -77,6 +78,11 @@ export default function reducer(state = initialState, action) {
     else if (action.type === FETCH_COUNT_ERROR) {
         return Object.assign({}, state, {
             error: action.error
+        });
+    }
+    else if (action.type === RESET) {
+        return Object.assign({}, state, {
+            answer: null
         });
     }
     return state;

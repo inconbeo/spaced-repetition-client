@@ -52,6 +52,12 @@ export const scoreRight = () => ({
     
 });
 
+export const RESET = 'RESET';
+export const reset = () => ({
+    type: RESET
+    
+});
+
 export const postingAnswer = (value) => (dispatch, getState) => {
     console.log('START POSTING ANSWER')
     const state = getState();
@@ -64,10 +70,10 @@ export const postingAnswer = (value) => (dispatch, getState) => {
       },
       body: JSON.stringify({answer: value, username: state.auth.currentUser.username})
     })
-    .then((data) => {
-        console.log('DATA DAY NE', data)
-        dispatch(fetchingQuestion())
-        })
+    // .then((data) => {
+    //     console.log('DATA DAY NE', data)
+    //     dispatch(fetchingQuestion())
+    //     })
   };
 
 export const fetchingQuestion = () => (dispatch, getState) => {
@@ -86,9 +92,7 @@ export const fetchingQuestion = () => (dispatch, getState) => {
         .then((data) => {
             console.log('FETCHING QUESTION DATA NE',data)
             dispatch(fetchItemSuccess(data))
-            
         })
-        
 };
 
 export const transferQuestions = () => (dispatch, getState) => {
