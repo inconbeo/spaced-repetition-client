@@ -14,7 +14,7 @@ export function LandingPage(props) {
         <div style = {style} className="home">
             <h2>Welcome to our app</h2>
             <LoginForm />
-            <Link to="/register">Register</Link>
+            <Link to="/register" className="registerAccountButton">Register</Link>
         </div>
     );
 }
