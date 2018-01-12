@@ -100,7 +100,7 @@ export class Dashboard extends React.Component {
                 <div>{correctAnswer}</div>
                 <p>Your Score: {this.props.score}/{this.props.time}</p>
                 
-                {/* {againButton} */}
+                <p>This is the testing question: {this.props.question}</p>
             </div>
         </div>
     )
@@ -122,6 +122,7 @@ const mapStateToProps = state => {
         time: state.protectedData.time,
         questions: state.auth.currentUser.questions,
         countUser: state.auth.currentUser.count,
+        question: state.auth.currentUser.linklist.head.value.question
     };
 };
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
