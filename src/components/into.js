@@ -19,11 +19,11 @@ export class Intro extends React.Component {
     render () {
         console.log(this.props.linklist)
         console.log('checking count ne', this.props.questions)
-        const styles = {textAlign: 'center', 'textDecoration': 'none', 'color':'black'}
+        const styles = {textAlign: 'center', 'textDecoration': 'none'}
         return (
             <div style={styles}>
-                <h1>ARE YOU READY FOR THE LESSON ?</h1>
-                <button onClick={() => this.fetchingquestions}><Link style={styles} to="/dashboard">Lets Start</Link></button>
+                <h1 className="ready">ARE YOU READY FOR THE LESSON ?</h1>
+                <button className="start" onClick={() => this.fetchingquestions}><Link className="startbutton" style={styles} to="/dashboard">Let's Start</Link></button>
             </div>
         )
     }

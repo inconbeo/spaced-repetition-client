@@ -30,6 +30,12 @@
     color: black;
   }
 
+  .login-box {
+    padding-top: 70px;
+    font-size: 22px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+  
   .login-form {
     color: white;
     margin-bottom: 10px;
@@ -39,9 +45,11 @@
     opacity: .7;
   }
   
+  
   .login-form input {
+    font-size: 15px;
     margin-top: 10px;
-    width: 21em;
+    width: 200px;
     height: 31px;
     margin-bottom: 10px;
     border: 1px solid #a6a6a6;
@@ -54,19 +62,222 @@
   form input:focus {
     border-color: rgb(36, 104, 207);
     box-shadow: 0 0 3px 2px rgba(36, 104, 207, 0.5);
+   
+  }
+
+  .registerAccountButton {
+    font-size: 18px;
+    color: black;
+  }
+
+  .loginbutton {
+    font-size: 18px;
+    color: black;
   }
   
-  form button {
-    width: 20em;
+  /* form button {
+    width: 150px;
     height: 31px;
     margin-top: 10px;
     transition: all 100ms linear;
     background-color: rgb(36, 104, 207);
     color: white;
     border: none;
-    margin-bottom: 15px;
+    margin-bottom: 15px;;
+    font-size: 15px;
+
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  } */
+
+  .form-button:hover {
+    background: rgb(34, 86, 230);
   }
   
   form button:active {
     transform: translateY(4px);
+  }
+
+  .logoutbutton {
+    min-width: 100px;
+    width: 100px;;
+    height: 31px;
+    margin-top: 10px;
+    transition: all 100ms linear;
+    background-color: rgb(173, 36, 207);
+    color: white;
+    border: none;
+    margin-bottom: 15px;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .logoutbutton:hover {
+    background: rgb(34, 86, 230);
+  }
+  
+  .logoutbuttonn:active {
+    transform: translateY(4px);
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  
+  .headbar {
+    margin-top: 100px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+
+  .ready {
+    margin-top: 120px;
+    font-weight: normal;
+  }
+
+  .start {
+    min-width: 100px;
+    width: 250px;;
+    height: 80px;
+    margin-top: 10px;
+    transition: all 100ms linear;
+    background-color: rgb(173, 36, 207);
+    color: white;
+    border: none;
+    margin-bottom: 15px;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    font-size: 30px;
+  }
+  
+  .start:hover {
+    background: rgb(34, 86, 230);
+  }
+  
+  .start:active {
+    transform: translateY(4px);
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  
+
+  .startbutton{
+    color: white;
+  }
+
+  .log, .register {
+    min-width: 100px;
+    width: 120px;;
+    height: 30px;
+    margin-top: 10px;
+    transition: all 100ms linear;
+    background-color: rgb(173, 36, 207);
+    color: white;
+    border: none;
+    margin-bottom: 15px;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  
+  }
+  
+  .log:hover, .register:hover {
+    background: rgb(34, 86, 230);
+  }
+  
+  .log:active, .register:active {
+    transform: translateY(4px);
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  
+
+  .startbutton{
+    color: white;
+  }
+
+  .box-input .holder {
+    height: 50px;
+    width: 300px;
+
+  }
+
+  .holder {
+    font-size: 28px;
+  }
+
+  .meaning {
+    font-weight: normal;
+  }
+
+  .input-section {
+    padding-top: 30px;
+  }
+
+  .submit, .next, .over {
+    margin-left: 20px;
+  }
+
+  .submit, .next, .over {
+    min-width: 100px;
+    width: 250px;;
+    height: 80px;
+    margin-top: 10px;
+    transition: all 100ms linear;
+    background-color: rgb(173, 36, 207);
+    color: white;
+    border: none;
+    margin-bottom: 15px;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    font-size: 30px;
+    border-radius: 25px;
+  }
+  
+  .submit:hover, .next:hover, .over:hover {
+    background: rgb(34, 86, 230);
+  }
+  
+  .submit:active, .next:active, .over:active {
+    transform: translateY(4px);
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+
+  .answer {
+    font-size: 20px;
+    color: black;
+  }
+
+  .ngan {
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: white;
+    width: 30%;
+    margin: 0px auto;
+    border-radius: 30px;
+  }
+
+  .questions {
+    font-size: 35px;
   }

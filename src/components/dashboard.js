@@ -48,11 +48,11 @@ export class Dashboard extends React.Component {
             }
             else if (this.props.answer===this.props.answerll) {
                 //this.score()
-                answer = <p>This is Correct</p>
+                answer = <p className="answer">This is Correct</p>
                 correctAnswer = <p></p>
             }
             else {
-                answer = <p>This is Incorrect</p>
+                answer = <p className="answer" >This is Incorrect</p>
                 correctAnswer = <p>The correct answer is: {this.props.answerll}</p>
             }
            
@@ -65,18 +65,24 @@ export class Dashboard extends React.Component {
       
     return (
         <div className="cheese" style={styles}>
-        <h1>What do these words mean in English:</h1>
+        <h1 className="meaning">What do these words mean in English:</h1>
             <div>
-                <h3><p>{this.props.question}</p></h3>
-                <form onSubmit={e => this.submitAnswer(e)}>
-                        <input placeholder="What does it mean ?" type="text" ref={input => this.input = input}/>
-                        <input  type="submit" className="button" name="submit"/>
-                        <button type="button" onClick={() => this.nextQuestion()}>Next</button>
-                        <button type="button" onClick={() => this.startAgain()}>Start Over</button>
+                <h3 className="questions"><p>{this.props.question}</p></h3>
+                <form className="box-input" onSubmit={e => this.submitAnswer(e)}>
+                        <input className="holder" placeholder="What does it mean ?" type="text" ref={input => this.input = input}/>
+                        <br></br>
+                        <div className="input-section">
+                            <input  type="submit" className="submit" name="submit"/>
+                            <button type="button" className="next" onClick={() => this.nextQuestion()}>Next</button>
+                            <button type="button" className="over" onClick={() => this.startAgain()}>Start Over</button>
+                        </div>
+                        
                 </form>
+                <div className="ngan">
                 {answer}
-                <div>{correctAnswer}</div>
-                <p>Your Score: {this.props.data.length}/{this.props.time}</p>
+                <div className="answer" >{correctAnswer}</div>
+                <p className="answer" >Your Score: {this.props.data.length}/{this.props.time}</p>
+                </div>
             </div>
         </div>
     )

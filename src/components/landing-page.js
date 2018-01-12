@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-
+import './dashboard.css';
 import LoginForm from './login-form';
 
 export function LandingPage(props) {
@@ -11,8 +11,8 @@ export function LandingPage(props) {
     }
     const style = {'textAlign':'center'}
     return (
-        <div style = {style} className="home">
-            <h2>Welcome to our app</h2>
+        <div  style = {style} className="home">
+            <h2 className="login-box">Welcome to Langu-Umbala!</h2>
             <LoginForm />
             <Link to="/register" className="registerAccountButton">Register</Link>
         </div>
