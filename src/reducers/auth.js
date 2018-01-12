@@ -3,7 +3,8 @@ import {
     CLEAR_AUTH,
     AUTH_REQUEST,
     AUTH_SUCCESS,
-    AUTH_ERROR
+    AUTH_ERROR,
+    FETCH_ITEM_SUCCESS
  } from '../actions/auth';
 //import { FETCH_ADD_ITEM_SUCCESS } from '../actions/protected-data';
 
@@ -40,13 +41,13 @@ export default function reducer(state = initialState, action) {
             error: action.error
         });
     }
-    // else if (action.type === FETCH_ADD_ITEM_SUCCESS) {
-    //     console.log(action);
-    //     return Object.assign({}, state, {
-    //       currentUser: Object.assign({}, state.currentUser, {
-    //         questions: action.questions
-    //       })
-    //     });
-    //   }
+    else if (action.type === FETCH_ITEM_SUCCESS) {
+        console.log(action);
+        return Object.assign({}, state, {
+          currentUser: Object.assign({}, state.currentUser, {
+            linklist: action.linklist
+          })
+        });
+      }
     return state;
 }
