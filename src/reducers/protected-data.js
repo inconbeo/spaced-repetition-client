@@ -5,8 +5,8 @@ import {
     FETCH_PROTECTED_DATA_ERROR,
     SUBMIT_CORRECT_ANSWER,
     SUBMIT_WRONG_ANSWER,
-    RESET_QUESTIONS,
-    START_OVER
+    START_OVER,
+    SCORE_RIGHT
 } from '../actions/protected-data';
 
 const initialState = {
@@ -14,7 +14,6 @@ const initialState = {
     loading: false,
     error: null,
     answer: null,
-    count: 0,
     score: 0,
     time: 0
 };
@@ -35,7 +34,13 @@ export default function reducer(state = initialState, action) {
     else if (action.type === SUBMIT_CORRECT_ANSWER) {
         return Object.assign({}, state, {
             answer: action.answer,
-            count: state.count + 1,
+            time: state.time + 1,
+            data: [...state.data, action.answer]
+        })
+    }
+
+    else if (action.type === SCORE_RIGHT) {
+        return Object.assign({}, state, {
             score: state.score + 1,
             time: state.time + 1
         })
@@ -44,19 +49,14 @@ export default function reducer(state = initialState, action) {
     else if (action.type === SUBMIT_WRONG_ANSWER) {
         return Object.assign({}, state, {
             answer: action.answer,
-            count: state.count + 1,
             time: state.time + 1
+           
         })
     }
-    else if(action.type === RESET_QUESTIONS) {
-        return Object.assign({}, state, {
-            count: 0,
-            answer: action.answer
-        })
-    }
+   
     else if(action.type === START_OVER) {
         return Object.assign({}, state, {
-            //data: [],
+            data: [],
             loading: false,
             error: null,
             answer: null,

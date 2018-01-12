@@ -1,5 +1,6 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
+import { fetchItemSuccess } from './auth';
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
@@ -25,11 +26,6 @@ export const submitWrongAnswer = answer => ({
     answer
 })
 
-export const RESET_QUESTIONS = 'RESET_QUESTIONS';
-export const resetQuestions = (answer)  => ({
-    type: RESET_QUESTIONS,
-    answer
-})
 
 export const START_OVER = 'START_OVER';
 export const startOver = ()  => ({
@@ -50,9 +46,35 @@ export const fetchCountError = error => ({
     error
 });
 
-export const fetchProtectedData = () => (dispatch, getState) => {
+export const SCORE_RIGHT = 'SCORE_RIGHT';
+export const scoreRight = () => ({
+    type: FETCH_COUNT_ERROR
+    
+});
+
+export const postingAnswer = (value) => (dispatch, getState) => {
+    console.log('START POSTING ANSWER')
+    const state = getState();
+    return fetch(`${API_BASE_URL}/users/answer`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.auth.authToken}`
+      },
+      body: JSON.stringify({answer: value, username: state.auth.currentUser.username})
+    })
+    .then((data) => {
+        console.log('DATA DAY NE', data)
+        dispatch(fetchingQuestion())
+        })
+  };
+
+export const fetchingQuestion = () => (dispatch, getState) => {
+    console.log('START FETCHING QUESTIONS')
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/protected`, {
+    const state = getState();
+    return fetch(`${API_BASE_URL}/users/node/${state.auth.currentUser.id}`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
@@ -62,12 +84,25 @@ export const fetchProtectedData = () => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => {
-            console.log(data)
-            dispatch(fetchProtectedDataSuccess(data[0].questions))})
-        .catch(err => {
-            dispatch(fetchProtectedDataError(err));
-        });
+            console.log('FETCHING QUESTION DATA NE',data)
+            dispatch(fetchItemSuccess(data))
+            
+        })
+        
 };
+
+export const transferQuestions = () => (dispatch, getState) => {
+    console.log('TRANSFER QUESTIONS START HERE')
+    const authToken = getState().auth.authToken;
+    const state = getState();
+    return fetch(`${API_BASE_URL}/users/questions/${state.auth.currentUser.id}`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+}
 
 export const updateCount = (count, score, time) => (dispatch, getState) => {
     console.log('UPDATING COUNTS ARE DISPATCHING HERE');

@@ -33,6 +33,13 @@ export const authError = error => ({
     error
 });
 
+export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS';
+export const fetchItemSuccess = linklist => ({
+    type: FETCH_ITEM_SUCCESS,
+    linklist
+});
+
+
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {

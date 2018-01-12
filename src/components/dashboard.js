@@ -1,87 +1,65 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {fetchAddList, fetchCount, fetchProtectedData, submitCorrectAnswer, submitWrongAnswer, resetQuestions, startOver} from '../actions/protected-data';
-
+import {scoreRight, transferQuestions,fetchingQuestion, postingAnswer, fetchCount, submitCorrectAnswer, submitWrongAnswer, startOver} from '../actions/protected-data';
+import './dashboard.css';
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchAddList())
         this.props.dispatch(fetchCount());
-        this.props.dispatch(fetchProtectedData())
-    }
-
+     }
+    
     submitAnswer(event) {
         event.preventDefault();
         const value = this.input.value;
         console.log(value);
-        const actual = this.props.data.map((question, index) => (
-            question.answer
-      ))
+        console.log('THIS IS THE ANSWER', this.props.answerll)
+    
       if (!value) {
           return
       }
-        if (value===actual[this.props.count]) {
+        if (value===this.props.answerll) {
         this.props.dispatch(submitCorrectAnswer(value));
         }
         else {
         this.props.dispatch(submitWrongAnswer(value));
         }
+        
         this.input.value = '';
-    }
-
-    playAgain() {
-        this.props.dispatch(resetQuestions(this.props.answer));
-        this.props.dispatch(fetchProtectedData());
-    }
-
-    startAgain() {
+        this.props.dispatch(postingAnswer(value))
+     }
+    
+     startAgain() {
         this.props.dispatch(startOver());
-        this.props.dispatch(fetchProtectedData());
+        this.props.dispatch(transferQuestions())
+        this.props.dispatch(fetchingQuestion());
+        this.props.dispatch(fetchingQuestion());
+        this.props.dispatch(fetchingQuestion());
     }
+
+    score() {
+        this.props.dispatch(scoreRight());
+    }
+
     render() {
-        const actual = this.props.data.map((question, index) => (
-              question.answer
-        ))
-        const questions = this.props.data.map((question, index) => (
-            <div key={index}>{question.question}</div>
-        ))
         let answer, correctAnswer;
             if (!this.props.answer) {
                 answer = <p></p>
                 correctAnswer = <p></p>
             }
-            else if (this.props.count===actual.length && this.props.answer===actual[actual.lengt-1]) {
-                console.log(actual[actual.lengt-1])
-                answer = <p>This is Correct</p>
-                correctAnswer = <p></p>
-                this.playAgain();
-            }
-            else if (this.props.count===actual.length && this.props.answer!==actual[actual.lengt-1]) {
-                answer = <p>This is Incorrect</p>
-                correctAnswer = <p>The correct answer is: {actual[actual.length-1]}</p>
-                this.playAgain();
-             }
-            else if (this.props.answer!==actual[actual.length-1] && this.props.count===0) {
-                answer = <p>This is Incorrect</p>
-                correctAnswer = <p>The correct answer is: {actual[actual.length-1]}</p>
-            }
-            else if (this.props.answer===actual[actual.length-1] && this.props.count===0) {
-                answer = <p>This is Correct</p>
-                correctAnswer = <p></p>
-            }
-            else if (this.props.answer===actual[this.props.count-1]) {
+            else if (this.props.answer===this.props.answerll) {
+                this.score()
                 answer = <p>This is Correct</p>
                 correctAnswer = <p></p>
             }
             else {
                 answer = <p>This is Incorrect</p>
-                correctAnswer = <p>The correct answer is: {actual[this.props.count-1]}</p>
+                correctAnswer = <p>The correct answer is: {this.props.answerll}</p>
             }
-            console.log(this.props.count)
-            console.log(this.props.data)
-            console.log(this.props.answer)
-            console.log(actual[actual.length-1])
-                    
+           
+            
+            console.log('checking linkedlist answer', this.props.answerll)
+            console.log(this.props.answer); 
+            console.log(this.props.data);      
         
         const styles = {'textAlign' : 'center'}
       
@@ -89,18 +67,15 @@ export class Dashboard extends React.Component {
         <div className="cheese" style={styles}>
         <h1>What do these words mean in English:</h1>
             <div>
-                <h3><p>{questions[this.props.count]}</p></h3>
+                <h3><p>{this.props.question}</p></h3>
                 <form onSubmit={e => this.submitAnswer(e)}>
                         <input placeholder="What does it mean ?" type="text" ref={input => this.input = input}/>
                         <input  type="submit" className="button" name="submit"/>
                         <button type="button" onClick={() => this.startAgain()}>Start Over</button>
                 </form>
-                
                 {answer}
                 <div>{correctAnswer}</div>
-                <p>Your Score: {this.props.score}/{this.props.time}</p>
-                
-                <p>This is the testing question: {this.props.question}</p>
+                <p>Your Score: {this.props.data.length}/{this.props.time}</p>
             </div>
         </div>
     )
@@ -108,6 +83,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+    
     console.log('checking auth', state.auth)
     const {currentUser} = state.auth;
     return {
@@ -117,12 +93,12 @@ const mapStateToProps = state => {
         loading: state.protectedData.loading,
         error: state.protectedData.error,
         answer: state.protectedData.answer,
-        count: state.protectedData.count,
         score: state.protectedData.score,
         time: state.protectedData.time,
         questions: state.auth.currentUser.questions,
         countUser: state.auth.currentUser.count,
-        question: state.auth.currentUser.linklist.head.value.question
+        question: state.auth.currentUser.linklist.head.value.question,
+        answerll: state.auth.currentUser.linklist.head.value.answer
     };
 };
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
