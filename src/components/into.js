@@ -9,11 +9,14 @@ export class Intro extends React.Component {
         this.props.dispatch(fetchAddList())
         if (this.props.linklist==='') {
             this.props.dispatch(transferQuestions())
-            this.props.dispatch(fetchingQuestion());
         }
         else {
             return
         }
+        }
+
+    fetching() {
+        this.props.dispatch(fetchingQuestion());
     }
     
     render () {
@@ -21,11 +24,10 @@ export class Intro extends React.Component {
         console.log(this.props.linklist)
         console.log('checking count ne', this.props.questions)
         const styles = {textAlign: 'center', 'textDecoration': 'none'}
-        // const upper = this.props.name.touppercase();
         return (
             <div style={styles}>
                 <h1 className="ready">ARE YOU READY FOR THE LESSON, {upper}?</h1>
-                <button className="start" onClick={() => this.fetchingquestions}><Link className="startbutton" style={styles} to="/dashboard">Let's Start</Link></button>
+                <button onClick={()=>this.fetching()} className="start" ><Link className="startbutton" style={styles} to="/dashboard">Let's Start</Link></button>
             </div>
         )
     }

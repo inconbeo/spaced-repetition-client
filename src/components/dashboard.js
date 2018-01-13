@@ -5,7 +5,10 @@ import {reset, transferQuestions,fetchingQuestion, postingAnswer, fetchCount, su
 import './dashboard.css';
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchCount());
+        if (this.props.head===null) {
+            this.props.dispatch(fetchingQuestion());
+        }
+            this.props.dispatch(fetchCount());
      }
     
     submitAnswer(event) {
@@ -106,7 +109,8 @@ const mapStateToProps = state => {
         questions: state.auth.currentUser.questions,
         countUser: state.auth.currentUser.count,
         question: state.auth.currentUser.linklist.head.value.question,
-        answerll: state.auth.currentUser.linklist.head.value.answer
+        answerll: state.auth.currentUser.linklist.head.value.answer,
+        head: state.auth.currentUser.linklist.head
     };
 };
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
