@@ -6,19 +6,18 @@ import {fetchAddList, transferQuestions, fetchingQuestion} from '../actions/prot
 
 export class Intro extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchAddList())
         if (this.props.linklist==='') {
-            this.props.dispatch(transferQuestions())
+            this.props.dispatch(fetchAddList())
+            .then(() => this.props.dispatch(transferQuestions()))
+            .then(() => this.props.dispatch(fetchingQuestion()))
+            
         }
         else {
             return
         }
         }
 
-    fetching() {
-        this.props.dispatch(fetchingQuestion());
-    }
-    
+        
     render () {
         const upper = this.props.name.toUpperCase();
         console.log(this.props.linklist)
@@ -27,7 +26,7 @@ export class Intro extends React.Component {
         return (
             <div style={styles}>
                 <h1 className="ready">ARE YOU READY FOR THE LESSON, {upper}?</h1>
-                <button onClick={()=>this.fetching()} className="start" ><Link className="startbutton" style={styles} to="/dashboard">Let's Start</Link></button>
+                <button className="start" ><Link className="startbutton" style={styles} to="/dashboard">Let's Start</Link></button>
             </div>
         )
     }
