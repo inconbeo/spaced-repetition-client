@@ -10,7 +10,7 @@ https://langu-umbala.netlify.com/
 ![alt text](screenshots/repetition.jpg "repetition page")
 
 ## Functional Specification
-s
+
 ### Overview
 
 The purpose of Langu Umbala is to help users to learn Vietnamese words through space-repetition behavior.
