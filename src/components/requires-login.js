@@ -7,7 +7,7 @@ export default () => Component => {
     function RequiresLogin(props) {
         const {authenticating, loggedIn, error, ...passThroughProps} = props;
         const Example = ({ type, color }) => (
-            <ReactLoading type={type} color={color} height='667' width='375' />
+            <ReactLoading type={String} color={String} height='667' width='375' />
         );
         if (authenticating) {
             return <div>{Example}</div>;
