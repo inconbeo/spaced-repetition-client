@@ -3,7 +3,7 @@
   }
 
   body {
-      background-color: url('https://www.ictsd.org/sites/default/files/news/shutterstock_176408066%20food.jpg');
+      background: url('https://www.ictsd.org/sites/default/files/news/shutterstock_176408066%20food.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
