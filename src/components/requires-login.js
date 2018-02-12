@@ -1,16 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import ReactLoading from 'react-loading';
+import { ClipLoader } from 'react-spinners';
 
 export default () => Component => {
     function RequiresLogin(props) {
         const {authenticating, loggedIn, error, ...passThroughProps} = props;
-        const Example = ({ type, color }) => (
-            <ReactLoading type={String} color={String} height='667' width='375' />
-        );
+        
         if (authenticating) {
-            return <div>{Example}</div>;
+            return <div className='loading'>
+            <ClipLoader
+              color={'#0D8FA7'}
+              loading={authenticating} 
+            />
+          </div>
         } else if (!loggedIn || error) {
             return <Redirect to="/" />;
         }
