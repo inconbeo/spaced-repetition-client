@@ -51,12 +51,12 @@ export class LoginForm extends React.Component {
                     Log in
                 </button>
                 <br></br>
-                {/* <button onClick={()=>this.demologin('demo', 'demoaccount')} className="log">
+                <button onClick={()=>this.demologin('demo', 'demoaccount')} className="log">
                     Demo-Login
-                </button> */}
-                <p>Demo Account:</p>
+                </button>
+                {/* <p>Demo Account:</p>
                 <p>username: demo</p>
-                <p>password: demoaccount</p>
+                <p>password: demoaccount</p> */}
             </form>
             
         );
