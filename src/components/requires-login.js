@@ -6,9 +6,9 @@ import { ClipLoader } from 'react-spinners';
 export default () => Component => {
     function RequiresLogin(props) {
         const {authenticating, loggedIn, error, ...passThroughProps} = props;
-        
+        const styles = {'textAlign' : 'center'}
         if (authenticating) {
-            return <div className='loading'>
+            return <div className='loading' style = {styles}>
             <ClipLoader
               color={'#0D8FA7'}
               loading={authenticating} 
