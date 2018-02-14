@@ -296,4 +296,12 @@
       height: 50px;
       font-size: 25px;
     }
+
+    .headbar {
+      font-size: 27px;
+    }
+
+    .meaning {
+      font-size: 23px;
+    }
   }
