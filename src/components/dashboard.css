@@ -278,8 +278,22 @@
     width: 30%;
     margin: 0px auto;
     border-radius: 30px;
+    width: 470px;
   }
 
   .questions {
     font-size: 35px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .ngan {
+      width: 370px;
+    }
+
+    .submit, .next, .over {
+      min-width: 80px;
+      width: 220px;;
+      height: 50px;
+      font-size: 25px;
+    }
   }
